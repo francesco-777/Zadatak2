@@ -1,0 +1,91 @@
+﻿@model Zadatak2.Models.Osoba
+@{
+    Layout = null;
+    Html.EnableClientValidation(false);
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device‐width" />
+    <title>UnosOsobe</title>
+    <style>
+        label {
+            width: 100px;
+            display: inline-block;
+            margin: 5px;
+        }
+
+        .field-validation-error {
+            color: #f00;
+        }
+
+        .validation-summary-errors {
+            color: #f00;
+            font-weight: bold;
+        }
+
+        .input-validation-error {
+            border: 2px solid #f00;
+            background-color: #fee;
+        }
+
+        input[type="checkbox"].input-validation-error {
+            outline: 2px solid #f00;
+        }
+
+        input {
+            border-radius: 5px;
+            border: 1px solid black;
+        }
+
+        button {
+            margin: 5px;
+            border-radius: 10px;
+            background-color: lightgreen;
+            color: black;
+            border: 2px solid black;
+            font-weight: bold;
+            padding: 5px 10px;
+        }
+
+            button:hover {
+                background-color: orange;
+                color: floralwhite;
+                border: 2px solid floralwhite;
+            }
+    </style>
+</head>
+<body>
+    <div>
+        @*@Html.ValidationSummary()*@
+        @using (Html.BeginForm("ProvjeriOsobu", "Osoba"))
+        {
+            <div>
+                <label>Ime:</label>
+                @Html.EditorFor(x => x.Ime)
+                @Html.ValidationMessageFor(x => x.Ime)
+            </div>
+            <div>
+                <label>Prezime:</label>
+                @Html.EditorFor(x => x.Prezime)
+                @Html.ValidationMessageFor(x => x.Prezime)
+            </div>
+            <div>
+                <label>Datum rođenja:</label>
+                @Html.EditorFor(x => x.DatumRodjenja, new { htmlAttributes = new { @Value = string.Format("{0:d}", Model.DatumRodjenja)} })
+                @Html.ValidationMessageFor(x => x.DatumRodjenja)
+            </div>
+
+            <div>
+                <label>Email:</label>
+                @Html.EditorFor(x => x.Email, new { htmlAttributes = new { pattern = @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$" } })
+                @Html.ValidationMessageFor(x => x.Email)
+            </div>
+            <div>
+                <button type="submit" value="Pošalji">Pošalji</button>
+            </div>
+        }
+    </div>
+</body>
+</html>
+

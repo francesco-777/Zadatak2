@@ -1,0 +1,60 @@
+﻿@model Zadatak2.Models.Osoba
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device‐width" />
+    <title>PregledOsobe</title>
+    <style>
+        label {
+            width: 800px;
+            display: inline-block;
+            margin: 5px;
+        }
+
+        input {
+            border-radius: 5px;
+            border: 1px solid black;
+        }
+
+        button {
+            margin: 5px;
+            border-radius: 10px;
+            background-color: lightgreen;
+            color: black;
+            border: 2px solid black;
+            font-weight: bold;
+            padding: 5px 10px;
+        }
+
+            button:hover {
+                background-color: orange;
+                color: floralwhite;
+                border: 2px solid floralwhite;
+            }
+    </style>
+</head>
+<body>
+    <div>
+        <form method="post" action="/Osoba/PregledOsobe">
+            <div>
+                <label>Ime: @Model.Ime</label>
+            </div>
+            <div>
+                <label>Prezime: @Model.Prezime</label>
+            </div>
+            <div>
+                <label>Datum rođenja: @Model.DatumRodjenja.ToString("dd.MM.yyyy.")</label>
+            </div>
+            <div>
+                <label>Email: @Model.Email</label>
+            </div>
+        </form>
+        <form action="/Osoba/UnosOsobe">
+            <button type="submit">Natrag</button>
+        </form>
+    </div>
+</body>
+</html>
